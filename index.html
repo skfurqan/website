@@ -55,14 +55,19 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- Sticky Transparent Navbar -->
-  <header class="site-header" role="banner">
+  <header class="site-header">
     <div class="container nav-inner">
       <a class="brand" href="#" aria-label="Luxe Salon Hyderabad">
         <span class="logo-mark" aria-hidden="true">L</span>
         <span class="brand-text">Luxe Salon</span>
       </a>
 
-      <nav class="site-nav" role="navigation" aria-label="Primary">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="site-nav" aria-label="Primary">
         <ul>
           <li><a href="#services">Services</a></li>
           <li><a href="#about">About</a></li>
@@ -78,7 +83,7 @@
     </div>
   </header>
 
-  <main id="main" role="main">
+  <main id="main">
     <!-- Hero: Full-screen -->
     <section class="hero" aria-label="Hero: Luxe Salon">
       <div class="hero-media" role="img" aria-hidden="true"
@@ -233,7 +238,7 @@
             </div>
           </div>
 
-          <div class="carousel-controls" aria-hidden="true">
+          <div class="carousel-controls">
             <label for="c1" class="dot" aria-label="View testimonial 1"></label>
             <label for="c2" class="dot" aria-label="View testimonial 2"></label>
             <label for="c3" class="dot" aria-label="View testimonial 3"></label>
@@ -292,22 +297,25 @@
         <form class="contact-form" action="#" method="post" novalidate>
           <label>
             <span class="label-text">Full name</span>
-            <input type="text" name="name" required placeholder="Your name">
+            <input type="text" name="name" required placeholder="Your name" autocomplete="name">
           </label>
 
           <label>
             <span class="label-text">Phone or WhatsApp</span>
-            <input type="tel" name="phone" required placeholder="+91">
+            <input type="tel" name="phone" required placeholder="+91" autocomplete="tel">
           </label>
 
           <label>
             <span class="label-text">Service / Message</span>
-            <input type="text" name="subject" placeholder="E.g., Bridal enquiry, color booking">
+            <input type="text" name="subject" placeholder="E.g., Bridal enquiry, color booking" autocomplete="off">
           </label>
 
           <label>
             <span class="label-text">Preferred date & time</span>
-            <input type="text" name="datetime" placeholder="DD/MM/YYYY — e.g., 15/04/2026">
+            <div class="date-time-row">
+              <input type="date" name="date" autocomplete="off">
+              <input type="time" name="time" autocomplete="off">
+            </div>
           </label>
 
           <label>
@@ -336,7 +344,7 @@
   </a>
 
   <!-- Footer -->
-  <footer class="site-footer" role="contentinfo">
+  <footer class="site-footer">
     <div class="container footer-grid">
       <div>
         <a class="brand small" href="#">

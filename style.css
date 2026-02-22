@@ -69,6 +69,7 @@ body{
   display:flex;
   align-items:center;
   gap:16px;
+  position:relative;
 }
 .brand{
   display:flex;
@@ -97,8 +98,50 @@ body{
 }
 
 /* Nav links hidden under small screens (mobile-first design) */
-.site-nav{ margin-left:auto; display:none; }
+.nav-toggle-input{ display:none; }
+.nav-toggle-label{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  width:28px;
+  height:20px;
+  cursor:pointer;
+  margin-left:auto;
+  z-index:60;
+}
+.nav-toggle-label span{
+  display:block;
+  height:2px;
+  background:var(--charcoal);
+  border-radius:2px;
+  transition:transform .3s ease, opacity .3s ease;
+}
+.site-nav{
+  position:static;
+  background:transparent;
+  padding:0;
+}
+.site-nav ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:4px; }
+.site-nav a{ text-decoration:none; color:var(--muted-charcoal); font-weight:600; padding:10px 8px; border-radius:8px; display:block; }
 .nav-cta{ margin-left:12px; }
+
+@media(max-width:719px){
+  .site-nav{
+    display:none;
+    position:absolute;
+    top:calc(100% + 18px);
+    left:-20px;
+    right:-20px;
+    background:rgba(251,247,242,0.97);
+    backdrop-filter:blur(8px);
+    padding:16px 20px;
+    box-shadow:var(--soft-shadow);
+  }
+  .nav-toggle-input:checked ~ .site-nav{ display:block; }
+  .nav-toggle-input:checked ~ .nav-toggle-label span:nth-child(1){ transform:translateY(9px) rotate(45deg); }
+  .nav-toggle-input:checked ~ .nav-toggle-label span:nth-child(2){ opacity:0; }
+  .nav-toggle-input:checked ~ .nav-toggle-label span:nth-child(3){ transform:translateY(-9px) rotate(-45deg); }
+}
 
 .btn{
   display:inline-flex;
@@ -111,7 +154,10 @@ body{
   font-weight:600;
   font-size:14px;
   border:1px solid transparent;
+  cursor:pointer;
+  transition:opacity .2s ease, transform .2s ease, box-shadow .2s ease;
 }
+.btn:hover{ opacity:0.88; transform:translateY(-1px); }
 .btn-primary{
   background:var(--charcoal);
   color:var(--cream);
@@ -179,6 +225,7 @@ body{
   flex-direction:column;
   justify-content:space-between;
   min-height:180px;
+  transition:transform .35s cubic-bezier(.2,.9,.3,1);
 }
 .service-card .price{
   margin-top:6px;
@@ -195,8 +242,10 @@ body{
   padding:8px 12px;
   border-radius:10px;
   border:1px solid rgba(17,19,23,0.05);
+  transition:background .2s ease, border-color .2s ease;
 }
-.card:hover{ transform:translateY(-6px); transition:transform .35s cubic-bezier(.2,.9,.3,1); }
+.card-link:hover{ background:rgba(17,19,23,0.04); border-color:rgba(17,19,23,0.12); }
+.card:hover{ transform:translateY(-6px); }
 
 /* About split */
 .split{ display:grid; gap:24px; align-items:center; }
@@ -285,6 +334,7 @@ input#c3:checked ~ .carousel-controls label[for="c3"]{
 
 /* Form */
 .contact-form label{ display:block; margin-bottom:12px; }
+.label-text{ display:block; margin-bottom:4px; font-size:14px; font-weight:600; }
 .contact-form input,
 .contact-form textarea{
   width:100%;
@@ -294,6 +344,8 @@ input#c3:checked ~ .carousel-controls label[for="c3"]{
   background: #fff;
   font-size:14px;
 }
+.date-time-row{ display:flex; gap:10px; }
+.date-time-row input{ flex:1; width:auto; }
 .form-actions{ display:flex; gap:12px; margin-top:8px; }
 .small{ font-size:13px; }
 
@@ -332,9 +384,10 @@ input#c3:checked ~ .carousel-controls label[for="c3"]{
 
 /* Responsive layout adjustments */
 @media(min-width:720px){
-  .site-nav{ display:block; margin-left:32px; }
-  .site-nav ul{ display:flex; gap:18px; list-style:none; padding:0; margin:0; align-items:center; }
-  .site-nav a{ text-decoration:none; color:var(--muted-charcoal); font-weight:600; padding:8px; border-radius:8px; }
+  .nav-toggle-label{ display:none; }
+  .site-nav{ margin-left:32px; }
+  .site-nav ul{ flex-direction:row; gap:18px; align-items:center; }
+  .site-nav a{ padding:8px; }
   .nav-cta{ margin-left:12px; }
 
   /* Services grid to 2 columns */
